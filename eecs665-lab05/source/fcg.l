@@ -40,6 +40,20 @@ octdigit      [0-7]
 
 %{ 
  /**************************************************************************
+  * Scan types. 
+  *************************************************************************/
+%}
+
+"void"         { DEBUGF( "VOID\n" ); return 'VOID'; }
+"char"         { DEBUGF( "CHAR\n" ); return 'CHAR'; }
+"short"        { DEBUGF( "SHORT\n" ); return 'SHORT'; }
+"int"          { DEBUGF( "INT\n" ); return 'INT'; }
+"long"         { DEBUGF( "LONG\n" ); return 'LONG'; }
+"float"        { DEBUGF( "FLOAT\n" ); return 'FLOAT'; }
+"double"       { DEBUGF( "DOUBLE\n" ); return 'DOUBLE'; }
+
+%{ 
+ /**************************************************************************
   * Scan C identifiers.
   *************************************************************************/
 %}
@@ -53,9 +67,11 @@ octdigit      [0-7]
   *************************************************************************/
 %}
 
-"0x"{hexdigit}+ { DEBUGF( "INTVAL\n" ); return INTVAL; }
-"0"{octdigit}*  { DEBUGF( "INTVAL\n" ); return INTVAL; }
-[1-9]{digit}*   { DEBUGF( "INTVAL\n" ); return INTVAL; }
+"0x"{hexdigit}+    { DEBUGF( "INTVAL\n" ); return INTVAL; }
+"0"{octdigit}*     { DEBUGF( "INTVAL\n" ); return INTVAL; }
+[1-9]{digit}*      { DEBUGF( "INTVAL\n" ); return INTVAL; }
+[0-9]+"."[0-9]+"f" { DEBUGF( "FLTVAL\n" ); return FLTVAL; }
+[0-9]+"."[0-9]+    { DEBUGF( "DBLVAL\n" ); return DBLVAL; }
 
 %{
  /**************************************************************************

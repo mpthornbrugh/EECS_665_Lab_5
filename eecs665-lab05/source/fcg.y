@@ -18,6 +18,15 @@ extern int yylex();
 
 %token <id> ID
 %token INTVAL
+%token FLTVAL
+%token DBLVAL
+%token VOID
+%token CHAR
+%token SHORT
+%token INT
+%token LONG
+%token FLOAT
+%token DOUBLE
 
 %start top
 
@@ -38,6 +47,18 @@ function : func_signature '{' func_body '}'
 /*This rule matches a function signature such as int main( int argc, char *argv[] )*/
 func_signature : type ID '(' args ')' { printf("%s", $2); printf(";\n"); lastFunction = $2;}
 
+/*This rule matches a function body such as funcd();return funca( b, b );*/
+func_body : ID
+
+/*This rule matches a type such as int, void, etc...*/
+type : VOID
+	 | CHAR
+	 | SHORT
+	 | INT
+	 | LONG
+	 | FLOAT
+	 | DOUBLE
+
 /*********************************************************
  * An example rule used to parse arguments to a
  * function call. The arguments to a function call
@@ -55,6 +76,9 @@ args : /* empty rule */
  * expressions.
  ********************************************************/
 expr : INTVAL
+	 | type expr
+	 | FLTVAL
+	 | DBLVAL
 
 %%
 
