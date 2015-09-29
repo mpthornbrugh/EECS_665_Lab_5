@@ -441,14 +441,3 @@ return ID;
 }
 
 %%
-int main(int argc, const char* argv[])
-{
-  /*Make a call to yylex() recursively. Whenever yylex() is called, it scans tokens from the 
-  global input file yyin (which defaults to stdin). It continues until it either reaches an 
-  end-of-file (at which point it returns the value 0) or one of its actions executes a return statement.*/
-
-  while (yylex()) {
-  }
-
-return 0;
-}
