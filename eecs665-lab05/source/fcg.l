@@ -177,6 +177,6 @@ charval       "'"(\\)?."'"
 %}
 
 . {
-    fDEBUGF( stderr, "Unexpected input at line %d: '%s'\n", yylineno, yytext );
+    fprintf( stderr, "Unexpected input at line %d: '%s'\n", yylineno, yytext );
     exit( 1 );
 }
