@@ -125,7 +125,7 @@ charval       "'"(\\)?."'"
 "int"          { printf( "INT\n" ); return 'INT'; }
 "long"         { printf( "LONG\n" ); return 'LONG'; }
 "float"        { printf( "FLOAT\n" ); return 'FLOAT'; }
-"double"       { printf( "DOUBLE\n" ); return 'DOUBLE'; }
+"double"       { return 'DOUBLE'; }
 
 %{ 
  /**************************************************************************
@@ -134,7 +134,7 @@ charval       "'"(\\)?."'"
 %}
 
 {ident}         { printf( "ID\n" ); yylval.id = strdup(yytext); return ID; }
-{charval}       { printf( "CHARVAL\n" ); return CHARVAL; }
+{charval}       { printf( "CHARVAL\n" ); return 'CHARVAL'; }
 
 %{ 
  /**************************************************************************
