@@ -5,7 +5,7 @@
 #include <fcg.yacc.h>
 
 #ifndef NDEBUG
-#    define DEBUGF(...) printf(__VA_ARGS__)
+#    define DEBUGF(...) DEBUGF(__VA_ARGS__)
 #else
 #    define DEBUGF(...)
 #endif
@@ -30,16 +30,16 @@ charval       "'"(\\)?."'"
   *************************************************************************/
 %}
 
-"unsigned"  { printf("UNSIGNED\n"); return 'UNSIGNED'; }
-"typedef"   { printf("TYPEDEF\n");  return 'TYPEDEF'; }
-"struct"    { printf("STRUCT\n");   return 'STRUCT'; }
-"union"     { printf("UNION\n");    return 'UNION'; }
-"const"     { printf("CONST\n");    return 'CONST'; }
-"static"    { printf("STATIC\n");   return 'STATIC'; }
-"extern"    { printf("EXTERN\n");   return 'EXTERN'; }
-"auto"      { printf("AUTO\n");     return 'AUTO'; }
-"register"  { printf("REGISTER\n"); return 'REGISTER'; }
-"sizeof"    { printf("SIZEOF\n");   return 'SIZEOF'; }
+"unsigned"  { DEBUGF("UNSIGNED\n"); return 'UNSIGNED'; }
+"typedef"   { DEBUGF("TYPEDEF\n");  return 'TYPEDEF'; }
+"struct"    { DEBUGF("STRUCT\n");   return 'STRUCT'; }
+"union"     { DEBUGF("UNION\n");    return 'UNION'; }
+"const"     { DEBUGF("CONST\n");    return 'CONST'; }
+"static"    { DEBUGF("STATIC\n");   return 'STATIC'; }
+"extern"    { DEBUGF("EXTERN\n");   return 'EXTERN'; }
+"auto"      { DEBUGF("AUTO\n");     return 'AUTO'; }
+"register"  { DEBUGF("REGISTER\n"); return 'REGISTER'; }
+"sizeof"    { DEBUGF("SIZEOF\n");   return 'SIZEOF'; }
 
 %{
  /**************************************************************************
@@ -47,18 +47,18 @@ charval       "'"(\\)?."'"
   *************************************************************************/
 %}
 
-"return"    { printf("RETURN\n");   return 'RETURN'; }
-"do"        { printf("DO\n");       return 'DO'; }
-"while"     { printf("WHILE\n");    return 'WHILE'; }
-"for"       { printf("FOR\n");      return 'FOR'; }
-"switch"    { printf("SWITCH\n");   return 'SWITCH'; }
-"case"      { printf("CASE\n");     return 'CASE'; }
-"default"   { printf("DEFAULT\n");  return 'DEFAULT'; }
-"if"        { printf("IF\n");       return 'IF'; }
-"else"      { printf("ELSE\n");     return 'ELSE'; }
-"continue"  { printf("CONTINUE\n"); return 'CONTINUE'; }
-"break"     { printf("BREAK\n");    return 'BREAK'; }
-"goto"      { printf("GOTO\n");     return 'GOTO'; }
+"return"    { DEBUGF("RETURN\n");   return 'RETURN'; }
+"do"        { DEBUGF("DO\n");       return 'DO'; }
+"while"     { DEBUGF("WHILE\n");    return 'WHILE'; }
+"for"       { DEBUGF("FOR\n");      return 'FOR'; }
+"switch"    { DEBUGF("SWITCH\n");   return 'SWITCH'; }
+"case"      { DEBUGF("CASE\n");     return 'CASE'; }
+"default"   { DEBUGF("DEFAULT\n");  return 'DEFAULT'; }
+"if"        { DEBUGF("IF\n");       return 'IF'; }
+"else"      { DEBUGF("ELSE\n");     return 'ELSE'; }
+"continue"  { DEBUGF("CONTINUE\n"); return 'CONTINUE'; }
+"break"     { DEBUGF("BREAK\n");    return 'BREAK'; }
+"goto"      { DEBUGF("GOTO\n");     return 'GOTO'; }
 
 %{
  /**************************************************************************
@@ -66,37 +66,37 @@ charval       "'"(\\)?."'"
   *************************************************************************/
 %}
 
-"=="  { printf("EQ\n");       return 'EQ'; }
-"!="  { printf("NE\n");       return 'NE'; }
-">="  { printf("GE\n");       return 'GE'; }
-"<="  { printf("LE\n");       return 'LE'; }
-">"   { printf("GT\n");       return 'GT'; }
-"<"   { printf("LT\n");       return 'LT'; }
-"+"   { printf("ADD\n");      return 'ADD'; }
-"-"   { printf("SUB\n");      return 'SUB'; }
-"*"   { printf("MUL\n");      return 'MUL'; }
-"/"   { printf("DIV\n");      return 'DIV'; }
-"%"   { printf("MOD\n");      return 'MOD'; }
-"||"  { printf("OR\n");       return 'OR'; }
-"&&"  { printf("AND\n");      return 'AND'; }
-"|"   { printf("BITOR\n");    return 'BITOR'; }
-"&"   { printf("BITAND\n");   return 'BITAND'; }
-"^"   { printf("BITXOR\n");   return 'BITXOR'; }
-"!"   { printf("NOT\n");      return 'NOT'; }
-"~"   { printf("COM\n");      return 'COM'; } 
-"<<"  { printf("LSH\n");      return 'LSH'; }
-">>"  { printf("RSH\n");      return 'RSH'; }
-"="   { printf("SET\n");      return 'SET'; }
-"+="  { printf("SETADD\n");   return 'SETADD'; }
-"-="  { printf("SETSUB\n");   return 'SETSUB'; }
-"*="  { printf("SETMUL\n");   return 'SETMUL'; }
-"/="  { printf("SETDIV\n");   return 'SETDIV'; } 
-"%="  { printf("SETMOD\n");   return 'SETMOD'; }
-"|="  { printf("SETOR\n");    return 'SETOR'; }
-"&="  { printf("SETAND\n");   return 'SETAND'; }
-"^="  { printf("SETXOR\n");   return 'SETXOR'; }
-"<<=" { printf("SETLSH\n");   return 'SETLSH'; }
-">>=" { printf("SETRSH\n");   return 'SETRSH'; }
+"=="  { DEBUGF("EQ\n");       return 'EQ'; }
+"!="  { DEBUGF("NE\n");       return 'NE'; }
+">="  { DEBUGF("GE\n");       return 'GE'; }
+"<="  { DEBUGF("LE\n");       return 'LE'; }
+">"   { DEBUGF("GT\n");       return 'GT'; }
+"<"   { DEBUGF("LT\n");       return 'LT'; }
+"+"   { DEBUGF("ADD\n");      return 'ADD'; }
+"-"   { DEBUGF("SUB\n");      return 'SUB'; }
+"*"   { DEBUGF("MUL\n");      return 'MUL'; }
+"/"   { DEBUGF("DIV\n");      return 'DIV'; }
+"%"   { DEBUGF("MOD\n");      return 'MOD'; }
+"||"  { DEBUGF("OR\n");       return 'OR'; }
+"&&"  { DEBUGF("AND\n");      return 'AND'; }
+"|"   { DEBUGF("BITOR\n");    return 'BITOR'; }
+"&"   { DEBUGF("BITAND\n");   return 'BITAND'; }
+"^"   { DEBUGF("BITXOR\n");   return 'BITXOR'; }
+"!"   { DEBUGF("NOT\n");      return 'NOT'; }
+"~"   { DEBUGF("COM\n");      return 'COM'; } 
+"<<"  { DEBUGF("LSH\n");      return 'LSH'; }
+">>"  { DEBUGF("RSH\n");      return 'RSH'; }
+"="   { DEBUGF("SET\n");      return 'SET'; }
+"+="  { DEBUGF("SETADD\n");   return 'SETADD'; }
+"-="  { DEBUGF("SETSUB\n");   return 'SETSUB'; }
+"*="  { DEBUGF("SETMUL\n");   return 'SETMUL'; }
+"/="  { DEBUGF("SETDIV\n");   return 'SETDIV'; } 
+"%="  { DEBUGF("SETMOD\n");   return 'SETMOD'; }
+"|="  { DEBUGF("SETOR\n");    return 'SETOR'; }
+"&="  { DEBUGF("SETAND\n");   return 'SETAND'; }
+"^="  { DEBUGF("SETXOR\n");   return 'SETXOR'; }
+"<<=" { DEBUGF("SETLSH\n");   return 'SETLSH'; }
+">>=" { DEBUGF("SETRSH\n");   return 'SETRSH'; }
 
 %{ 
  /**************************************************************************
@@ -104,14 +104,14 @@ charval       "'"(\\)?."'"
   *************************************************************************/
 %}
 
-"("         { printf( "(\n" ); return '('; }
-")"         { printf( ")\n" ); return ')'; }
-"{"         { printf( "{\n" ); return '{'; }
-"}"         { printf( "}\n" ); return '}'; }
-"["         { printf( "[\n" ); return '['; }
-"]"         { printf( "]\n" ); return ']'; }
-","         { printf( ",\n" ); return ','; }
-";"         { printf( ";\n" ); return ';'; }
+"("         { DEBUGF( "(\n" ); return '('; }
+")"         { DEBUGF( ")\n" ); return ')'; }
+"{"         { DEBUGF( "{\n" ); return '{'; }
+"}"         { DEBUGF( "}\n" ); return '}'; }
+"["         { DEBUGF( "[\n" ); return '['; }
+"]"         { DEBUGF( "]\n" ); return ']'; }
+","         { DEBUGF( ",\n" ); return ','; }
+";"         { DEBUGF( ";\n" ); return ';'; }
 
 %{ 
  /**************************************************************************
@@ -119,13 +119,13 @@ charval       "'"(\\)?."'"
   *************************************************************************/
 %}
 
-"void"         { printf( "VOID\n" ); return 'VOID'; }
-"char"         { printf( "CHAR\n" ); return 'CHAR'; }
-"short"        { printf( "SHORT\n" ); return 'SHORT'; }
-"int"          { printf( "INT\n" ); return 'INT'; }
-"long"         { printf( "LONG\n" ); return 'LONG'; }
-"float"        { printf( "FLOAT\n" ); return 'FLOAT'; }
-"double"       { return 'DOUBLE'; }
+"void"         { DEBUGF( "VOID\n" ); return 'VOID'; }
+"char"         { DEBUGF( "CHAR\n" ); return 'CHAR'; }
+"short"        { DEBUGF( "SHORT\n" ); return 'SHORT'; }
+"int"          { DEBUGF( "INT\n" ); return 'INT'; }
+"long"         { DEBUGF( "LONG\n" ); return 'LONG'; }
+"float"        { DEBUGF( "FLOAT\n" ); return 'FLOAT'; }
+"double"       { DEBUGF( "DOUBLE\n" ); return 'DOUBLE'; }
 
 %{ 
  /**************************************************************************
@@ -133,8 +133,8 @@ charval       "'"(\\)?."'"
   *************************************************************************/
 %}
 
-{ident}         { printf( "ID\n" ); yylval.id = strdup(yytext); return ID; }
-{charval}       { printf( "CHARVAL\n" ); return 'CHARVAL'; }
+{ident}         { DEBUGF( "ID\n" ); yylval.id = strdup(yytext); return ID; }
+{charval}       { DEBUGF( "CHARVAL\n" ); return 'CHARVAL'; }
 
 %{ 
  /**************************************************************************
@@ -143,11 +143,11 @@ charval       "'"(\\)?."'"
   *************************************************************************/
 %}
 
-"0x"{hexdigit}+    { printf( "INTVAL\n" ); return INTVAL; }
-"0"{octdigit}*     { printf( "INTVAL\n" ); return INTVAL; }
-[1-9]{digit}*      { printf( "INTVAL\n" ); return INTVAL; }
-[0-9]+"."[0-9]+"f" { printf( "FLTVAL\n" ); return FLTVAL; }
-[0-9]+"."[0-9]+    { printf( "DBLVAL\n" ); return DBLVAL; }
+"0x"{hexdigit}+    { DEBUGF( "INTVAL\n" ); return INTVAL; }
+"0"{octdigit}*     { DEBUGF( "INTVAL\n" ); return INTVAL; }
+[1-9]{digit}*      { DEBUGF( "INTVAL\n" ); return INTVAL; }
+[0-9]+"."[0-9]+"f" { DEBUGF( "FLTVAL\n" ); return FLTVAL; }
+[0-9]+"."[0-9]+    { DEBUGF( "DBLVAL\n" ); return DBLVAL; }
 
 %{
  /**************************************************************************
@@ -177,6 +177,6 @@ charval       "'"(\\)?."'"
 %}
 
 . {
-    fprintf( stderr, "Unexpected input at line %d: '%s'\n", yylineno, yytext );
+    fDEBUGF( stderr, "Unexpected input at line %d: '%s'\n", yylineno, yytext );
     exit( 1 );
 }
