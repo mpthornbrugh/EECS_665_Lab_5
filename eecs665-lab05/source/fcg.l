@@ -135,6 +135,8 @@ charval       "'"(\\)?."'"
 
 {ident}         { DEBUGF( "ID\n" ); yylval.id = strdup(yytext); return ID; }
 {charval}       { DEBUGF( "CHARVAL\n" ); return 'CHARVAL'; }
+"\""[^<]*"\""   { DEBUGF( "STRVAL\n" ); return 'STRVAL'; }
+}
 
 %{ 
  /**************************************************************************

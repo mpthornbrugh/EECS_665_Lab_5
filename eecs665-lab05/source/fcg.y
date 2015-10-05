@@ -20,6 +20,8 @@ extern int yylex();
 %token INTVAL
 %token FLTVAL
 %token DBLVAL
+%token STRVAL
+%token CHARVAL
 %token VOID
 %token CHAR
 %token SHORT
@@ -27,6 +29,42 @@ extern int yylex();
 %token LONG
 %token FLOAT
 %token DOUBLE
+%token RETURN
+%token IF
+%token ELSE
+%token WHILE
+
+%token EQ
+%token NE
+%token GE
+%token LE
+%token GT
+%token LT
+%token ADD
+%token SUB
+%token MUL
+%token DIV
+%token MOD
+%token OR
+%token AND
+%token BITOR
+%token BITAND
+%token BITXOR
+%token NOT
+%token COM
+%token LSH
+%token RSH
+%token SET
+%token SETADD
+%token SETSUB
+%token SETMUL
+%token SETDIV
+%token SETMOD
+%token SETOR
+%token SETAND
+%token SETXOR
+%token SETLSH
+%token SETRSH
 
 %start top
 
@@ -48,7 +86,8 @@ function : func_signature '{' func_body '}'
 func_signature : type ID '(' args ')' { printf("%s", $2); printf(";\n"); lastFunction = $2;}
 
 /*This rule matches a function body such as funcd();return funca( b, b );*/
-func_body : ID
+func_body : declaration
+		  | statement
 
 /*This rule matches a type such as int, void, etc...*/
 type : VOID
@@ -59,6 +98,41 @@ type : VOID
 	 | FLOAT
 	 | DOUBLE
 
+/*This rule matches a declaration such as int c;*/
+declaration : type ID ';'
+
+/*This rule matches a statement such as y = funce( 4 );*/
+statement : assignment
+		  | return
+		  | statement_block
+		  | function_call
+		  | if
+		  | while
+
+/*This rule matches a assignment such as y = funce( 4 );*/
+assignment : ID = expr ';'
+
+/*This rule matches a return such as return x;*/
+return : RETURN expr ';'
+
+/*This rule matches a statement block such as { statement statement ... }*/
+assignment : '{' statements '}'
+
+/*This rule matches a group of statements such as statement statement ... */
+statements : /* empty rule */
+		   | statement
+		   | statement statement
+
+/*This rule matches a function call such as funce( int x ) */
+function_call : ID '(' args ')'
+
+/*This rule matches an if such as if (x == 1) {...}*/
+if : IF '(' expr ')' statement ELSE statement
+   | IF '(' expr ')' statement
+
+/*This rule matches a while such as while(1) ... */
+while : WHILE '(' expr ')' statement
+
 /*********************************************************
  * An example rule used to parse arguments to a
  * function call. The arguments to a function call
@@ -66,8 +140,18 @@ type : VOID
  * parameters separated by commas.
  ********************************************************/
 args : /* empty rule */
-     | expr
-     | expr ',' args
+     | paramater
+     | paramater ',' args
+
+/*This rule matches any parameter such as int x*/
+paramater : INTVAL
+		  | STRVAL
+		  | CHARVAL
+		  | DBLVAL
+		  | FLTVAL
+		  | expr op expr
+		  | ID
+		  | type ID
 
 /*********************************************************
  * An example rule used to parse a single expression.
@@ -76,9 +160,46 @@ args : /* empty rule */
  * expressions.
  ********************************************************/
 expr : INTVAL
-	 | type expr
-	 | FLTVAL
+	 | STRVAL
+	 | CHARVAL
 	 | DBLVAL
+	 | FLTVAL
+	 | expr op expr
+	 | function_call
+	 | ID
+
+/*This rule matches any */
+op : EQ
+   | NE
+   | GE
+   | LE
+   | GT
+   | LT
+   | ADD
+   | SUB
+   | MUL
+   | DIV
+   | MOD
+   | OR
+   | AND
+   | BITOR
+   | BITAND
+   | BITXOR
+   | NOT
+   | COM
+   | LSH
+   | RSH
+   | SET
+   | SETADD
+   | SETSUB
+   | SETMUL
+   | SETDIV
+   | SETMOD
+   | SETOR
+   | SETAND
+   | SETXOR
+   | SETLSH
+   | SETRSH
 
 %%
 
