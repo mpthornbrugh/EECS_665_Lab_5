@@ -99,13 +99,16 @@ top :
 
 /*This rule matches a  function in C Program*/
 function : func_signature '{' func_body '}'
+		 ;
 
 /*This rule matches a function signature such as int main( int argc, char *argv[] )*/
 func_signature : type ID '(' args ')' { printf("%s", $2); printf(";\n"); lastFunction = $2;}
+			   ;
 
 /*This rule matches a function body such as funcd();return funca( b, b );*/
 func_body : declaration
 		  | statement
+		  ;
 
 /*This rule matches a type such as int, void, etc...*/
 type : VOID
@@ -115,9 +118,11 @@ type : VOID
 	 | LONG
 	 | FLOAT
 	 | DOUBLE
+	 ;
 
 /*This rule matches a declaration such as int c;*/
 declaration : type ID ';'
+			;
 
 /*********************************************************
  * An example rule used to parse arguments to a
@@ -128,6 +133,7 @@ declaration : type ID ';'
 args : /* empty rule */
      | paramater
      | paramater ',' args
+     ;
 
 /*This rule matches any parameter such as int x*/
 paramater : INTVAL
@@ -138,6 +144,7 @@ paramater : INTVAL
 		  | expr op expr
 		  | ID
 		  | type ID
+		  ;
 
 /*********************************************************
  * An example rule used to parse a single expression.
@@ -153,6 +160,7 @@ expr : INTVAL
 	 | expr op expr
 	 | function_call
 	 | ID
+	 ;
 
 /*This rule matches any */
 op : EQ
@@ -186,9 +194,11 @@ op : EQ
    | SETXOR
    | SETLSH
    | SETRSH
+   ;
 
 /*This rule matches a function call such as funce( int x ) */
 function_call : ID '(' args ')' {printf(lastFunction); printf(" -> "); printf("%s", $1); printf(";\n");}
+			  ;
 
 /*This rule matches a statement such as y = funce( 4 );*/
 statement : assignment
@@ -197,27 +207,34 @@ statement : assignment
 		  | function_call
 		  | if_statement
 		  | while
+		  ;
 
 /*This rule matches a statement block such as { statement statement ... }*/
 statement_block : '{' statements '}'
+				;
 
 /*This rule matches a group of statements such as statement statement ... */
 statements : /* empty rule */
 		   | statement
 		   | statement statements
+		   ;
 
 /*This rule matches a return such as return x;*/
 return_statement : RETURN expr ';'
+				 ;
 
 /*This rule matches an if such as if (x == 1) {...}*/
 if_statement : IF '(' expr ')' statement ELSE statement
    | IF '(' expr ')' statement
+   ;
 
 /*This rule matches a while such as while(1) ... */
 while : WHILE '(' expr ')' statement
+	  ;
 
 /*This rule matches a assignment such as y = funce( 4 );*/
 assignment : ID '=' expr ';'
+		   ;
 
 %%
 
