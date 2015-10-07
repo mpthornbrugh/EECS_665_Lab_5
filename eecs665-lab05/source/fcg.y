@@ -66,6 +66,25 @@ extern int yylex();
 %token SETLSH
 %token SETRSH
 
+%token UNSIGNED
+%token TYPEDEF
+%token STRUCT
+%token UNION
+%token CONST
+%token STATIC
+%token EXTERN
+%token AUTO
+%token REGISTER
+%token SIZEOF
+%token DO
+%token FOR
+%token SWITCH
+%token CASE
+%token DEFAULT
+%token CONTINUE
+%token BREAK
+%token GOTO
+
 %start top
 
 %%
@@ -77,7 +96,6 @@ extern int yylex();
  ********************************************************/
 top : 
 |function top
-
 
 /*This rule matches a  function in C Program*/
 function : func_signature '{' func_body '}'
@@ -100,38 +118,6 @@ type : VOID
 
 /*This rule matches a declaration such as int c;*/
 declaration : type ID ';'
-
-/*This rule matches a statement such as y = funce( 4 );*/
-statement : assignment
-		  | return
-		  | statement_block
-		  | function_call
-		  | if
-		  | while
-
-/*This rule matches a assignment such as y = funce( 4 );*/
-assignment : ID = expr ';'
-
-/*This rule matches a return such as return x;*/
-return : RETURN expr ';'
-
-/*This rule matches a statement block such as { statement statement ... }*/
-assignment : '{' statements '}'
-
-/*This rule matches a group of statements such as statement statement ... */
-statements : /* empty rule */
-		   | statement
-		   | statement statement
-
-/*This rule matches a function call such as funce( int x ) */
-function_call : ID '(' args ')'
-
-/*This rule matches an if such as if (x == 1) {...}*/
-if : IF '(' expr ')' statement ELSE statement
-   | IF '(' expr ')' statement
-
-/*This rule matches a while such as while(1) ... */
-while : WHILE '(' expr ')' statement
 
 /*********************************************************
  * An example rule used to parse arguments to a
@@ -200,6 +186,38 @@ op : EQ
    | SETXOR
    | SETLSH
    | SETRSH
+
+/*This rule matches a function call such as funce( int x ) */
+function_call : ID '(' args ')' {printf(lastFunction); printf(" -> "); printf("%s", $1); printf(";\n");}
+
+/*This rule matches a statement such as y = funce( 4 );*/
+statement : assignment
+		  | return_statement
+		  | statement_block
+		  | function_call
+		  | if_statement
+		  | while
+
+/*This rule matches a statement block such as { statement statement ... }*/
+statement_block : '{' statements '}'
+
+/*This rule matches a group of statements such as statement statement ... */
+statements : /* empty rule */
+		   | statement
+		   | statement statements
+
+/*This rule matches a return such as return x;*/
+return_statement : RETURN expr ';'
+
+/*This rule matches an if such as if (x == 1) {...}*/
+if_statement : IF '(' expr ')' statement ELSE statement
+   | IF '(' expr ')' statement
+
+/*This rule matches a while such as while(1) ... */
+while : WHILE '(' expr ')' statement
+
+/*This rule matches a assignment such as y = funce( 4 );*/
+assignment : ID '=' expr ';'
 
 %%
 
