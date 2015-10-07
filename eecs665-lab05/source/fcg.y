@@ -122,6 +122,8 @@ type : VOID
 
 /*This rule matches a declaration such as int c;*/
 declaration : type ID ';'
+			| type '*' ID ';'
+			| type ID '[]' ';'
 			;
 
 /*********************************************************
