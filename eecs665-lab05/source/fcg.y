@@ -216,7 +216,7 @@ statement_block : '{' statements '}'
 /*This rule matches a group of statements such as statement statement ... */
 statements : /* empty rule */
 		   | statement
-		   | statement statements
+		   | statement '\n' statements
 		   ;
 
 /*This rule matches a return such as return x;*/
