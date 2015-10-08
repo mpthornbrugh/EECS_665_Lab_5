@@ -208,7 +208,7 @@ function_call : ID '(' args ')' {printf(lastFunction); printf(" -> "); printf("%
 /*This rule matches a statement such as y = funce( 4 );*/
 statement : assignment
 		  | return_statement
-		  | statement_block
+		  | statement_block {printf("In statement_block");}
 		  | function_call
 		  | if_statement
 		  | while
