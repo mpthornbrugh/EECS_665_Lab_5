@@ -127,6 +127,7 @@ type : VOID
 declaration : type ID
 			| type '*' ID
 			| type ID '[]'
+			| type '*' ID '[]'
 			;
 
 /*********************************************************
@@ -149,6 +150,9 @@ paramater : INTVAL
 		  | expr op expr
 		  | ID
 		  | type ID
+		  | type '*' ID
+		  | type ID '[]'
+		  | type '*' ID '[]'
 		  ;
 
 /*********************************************************
