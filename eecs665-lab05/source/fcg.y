@@ -206,7 +206,7 @@ function_call : ID '(' args ')' {printf(lastFunction); printf(" -> "); printf("%
 statement : assignment
 		  | return_statement
 		  | statement_block
-		  | function_call
+		  | function_call ';'
 		  | if_statement
 		  | while
 		  ;
