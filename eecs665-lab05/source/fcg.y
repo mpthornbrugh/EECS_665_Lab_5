@@ -106,8 +106,11 @@ func_signature : type ID '(' args ')' { printf("%s", $2); printf(";\n"); lastFun
 			   ;
 
 /*This rule matches a function body such as funcd();return funca( b, b );*/
-func_body : declaration
-		  | statement
+func_body : declaration ';'
+		  | statement ';'
+		  | /*empty rule*/
+		  | declaration ';' func_body
+		  | statement ';' func_body
 		  ;
 
 /*This rule matches a type such as int, void, etc...*/
@@ -121,9 +124,9 @@ type : VOID
 	 ;
 
 /*This rule matches a declaration such as int c;*/
-declaration : type ID ';'
-			| type '*' ID ';'
-			| type ID '[]' ';'
+declaration : type ID
+			| type '*' ID
+			| type ID '[]'
 			;
 
 /*********************************************************
@@ -206,7 +209,7 @@ function_call : ID '(' args ')' {printf(lastFunction); printf(" -> "); printf("%
 statement : assignment
 		  | return_statement
 		  | statement_block
-		  | function_call  {printf("in function_call inside statement \n");}
+		  | function_call
 		  | if_statement
 		  | while
 		  ;
@@ -222,7 +225,7 @@ statements : /* empty rule */
 		   ;
 
 /*This rule matches a return such as return x;*/
-return_statement : RETURN expr ';'
+return_statement : RETURN expr
 				 ;
 
 /*This rule matches an if such as if (x == 1) {...}*/
@@ -235,7 +238,7 @@ while : WHILE '(' expr ')' statement
 	  ;
 
 /*This rule matches a assignment such as y = funce( 4 );*/
-assignment : ID '=' expr ';'
+assignment : ID '=' expr
 		   ;
 
 %%
