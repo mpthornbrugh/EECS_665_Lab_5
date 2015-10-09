@@ -65,10 +65,10 @@ charval       "'"(\\)?."'"
   *************************************************************************/
 %}
 
-"=="  { DEBUGF("==\n");       return '=='; }
-"!="  { DEBUGF("!=\n");       return '!='; }
-">="  { DEBUGF(">=\n");       return '>='; }
-"<="  { DEBUGF("<=\n");       return '<='; }
+"=="  { DEBUGF("==\n");       return "=="; }
+"!="  { DEBUGF("!=\n");       return "!="; }
+">="  { DEBUGF(">=\n");       return ">="; }
+"<="  { DEBUGF("<=\n");       return "<="; }
 ">"   { DEBUGF(">\n");       return '>'; }
 "<"   { DEBUGF("<\n");       return '<'; }
 "+"   { DEBUGF("+\n");      return '+'; }
@@ -76,26 +76,26 @@ charval       "'"(\\)?."'"
 "*"   { DEBUGF("*\n");      return '*'; }
 "/"   { DEBUGF("/\n");      return '/'; }
 "%"   { DEBUGF("%\n");      return '%'; }
-"||"  { DEBUGF("||\n");       return '||'; }
-"&&"  { DEBUGF("&&\n");      return '&&'; }
+"||"  { DEBUGF("||\n");       return "||"; }
+"&&"  { DEBUGF("&&\n");      return "&&"; }
 "|"   { DEBUGF("|\n");    return '|'; }
 "&"   { DEBUGF("&\n");   return '&'; }
 "^"   { DEBUGF("^\n");   return '^'; }
 "!"   { DEBUGF("!\n");      return '!'; }
 "~"   { DEBUGF("~\n");      return '~'; } 
-"<<"  { DEBUGF("<<\n");      return '<<'; }
-">>"  { DEBUGF(">>\n");      return '>>'; }
+"<<"  { DEBUGF("<<\n");      return "<<"; }
+">>"  { DEBUGF(">>\n");      return "">>"; }
 "="   { DEBUGF("=\n");      return '='; }
-"+="  { DEBUGF("+=\n");   return '+='; }
-"-="  { DEBUGF("-=\n");   return '-='; }
-"*="  { DEBUGF("*=\n");   return '*='; }
-"/="  { DEBUGF("/=\n");   return '/='; } 
-"%="  { DEBUGF("%=\n");   return '%='; }
-"|="  { DEBUGF("|=\n");    return '|='; }
-"&="  { DEBUGF("&=\n");   return '&='; }
-"^="  { DEBUGF("^=\n");   return '^='; }
-"<<=" { DEBUGF("<<=\n");   return '<<='; }
-">>=" { DEBUGF(">>=\n");   return '>>='; }
+"+="  { DEBUGF("+=\n");   return "+="; }
+"-="  { DEBUGF("-=\n");   return "-="; }
+"*="  { DEBUGF("*=\n");   return "*="; }
+"/="  { DEBUGF("/=\n");   return "/="; } 
+"%="  { DEBUGF("%=\n");   return "%="; }
+"|="  { DEBUGF("|=\n");    return "|="; }
+"&="  { DEBUGF("&=\n");   return "&="; }
+"^="  { DEBUGF("^=\n");   return "^="; }
+"<<=" { DEBUGF("<<=\n");   return "<<="; }
+">>=" { DEBUGF(">>=\n");   return ">>="; }
 
 %{ 
  /**************************************************************************
