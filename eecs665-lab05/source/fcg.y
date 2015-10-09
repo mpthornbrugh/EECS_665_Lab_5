@@ -106,10 +106,10 @@ func_signature : type ID '(' args ')' { printf("%s", $2); printf(";\n"); lastFun
 			   ;
 
 /*This rule matches a function body such as funcd();return funca( b, b );*/
-func_body : declaration ';'
-		  | statement ';'
-		  | declaration ';' func_body
-		  | statement ';' func_body
+func_body : declaration ';' {printf("declaration\n");}
+		  | statement ';' {printf("statement\n");}
+		  | declaration ';' func_body {printf("declaration\n");}
+		  | statement ';' func_body {printf("statement\n");}
 		  ;
 
 /*This rule matches a type such as int, void, etc...*/
@@ -242,7 +242,6 @@ while : WHILE '(' expr ')' statement
 
 /*This rule matches a assignment such as y = funce( 4 );*/
 assignment : ID '=' expr
-		   | ID '=' function_call
 		   ;
 
 %%
