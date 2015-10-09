@@ -106,10 +106,10 @@ func_signature : type ID '(' args ')' { printf("%s", $2); printf(";\n"); lastFun
 			   ;
 
 /*This rule matches a function body such as funcd();return funca( b, b );*/
-func_body : declaration 
-		  | statement
-		  | declaration '\n' func_body
-		  | statement '\n' func_body
+func_body : declaration {printf("1");}
+		  | statement {printf("2");}
+		  | declaration '\n' func_body {printf("3");}
+		  | statement '\n' func_body {printf("4");}
 		  ;
 
 /*This rule matches a type such as int, void, etc...*/
