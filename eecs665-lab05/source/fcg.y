@@ -106,10 +106,10 @@ func_signature : type ID '(' args ')' { printf("%s", $2); printf(";\n"); lastFun
 			   ;
 
 /*This rule matches a function body such as funcd();return funca( b, b );*/
-func_body : declaration ';' {printf("declaration only");}
-		  | statement ';' {printf("statement only");}
-		  | declaration ';' func_body {printf("declaration and func_body");}
-		  | statement ';' func_body {printf("statement and func_body");}
+func_body : declaration ';'
+		  | statement ';'
+		  | declaration ';' func_body
+		  | statement ';' func_body
 		  ;
 
 /*This rule matches a type such as int, void, etc...*/
@@ -209,7 +209,7 @@ function_call : ID '(' args ')' {printf(lastFunction); printf(" -> "); printf("%
 			  ;
 
 /*This rule matches a statement such as y = funce( 4 );*/
-statement : assignment
+statement : assignment {printf("assignment inside statement");}
 		  | return_statement
 		  | statement_block
 		  | function_call
