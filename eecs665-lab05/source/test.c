@@ -12,7 +12,7 @@ int funcc( int a, int b ) {
     int c;
     int d;
     while( funca( 25, 30 ) ) {
-        a = a + c * d - b;
+        
     }
 }
 
