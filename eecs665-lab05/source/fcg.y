@@ -239,7 +239,7 @@ while : WHILE '(' expr ')' statement
 	  ;
 
 /*This rule matches a assignment such as y = funce( 4 );*/
-assignment : ID '=' expr ';'
+assignment : ID SET expr ';'
 		   ;
 
 %%
