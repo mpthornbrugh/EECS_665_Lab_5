@@ -1,6 +1,7 @@
 int funca( int a, int b ) {
     funce( 10 );
     return a * b;
+    a = a + c * d - b;
 }
 
 int funcb( int b ) {
@@ -12,7 +13,7 @@ int funcc( int a, int b ) {
     int c;
     int d;
     while( funca( 25, 30 ) ) {
-        
+        a = a + c * d - b;
     }
 }
 
