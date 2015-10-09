@@ -1,5 +1,5 @@
 int funca( int a, int b ) {
-    funce();
+    b = funce( 10 );
     return a * b;
 }
 
@@ -12,15 +12,15 @@ int funcc( int a, int b ) {
     int c;
     int d;
     while( funca( 25, 30 ) ) {
-        
+        a = a + c * d - b;
     }
 }
 
 int funcd() {
     int x;
     int y;
-    funce( 4 );
-    y << 2;
+    y = funce( 4 );
+    x = y << 2;
     if ( funcd() < 100 ) {
         return 1;
     }
@@ -37,8 +37,8 @@ int main( int argc, char *argv[] ) {
     int a;
     int b;
 
-    funca( 2, 10 );
-    funcb( 5 );
+    a = funca( 2, 10 );
+    b = funcb( 5 );
 
     if( argc <= 2 ) {
         funcc( 0, 1 );
