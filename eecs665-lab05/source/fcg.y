@@ -34,38 +34,6 @@ extern int yylex();
 %token ELSE
 %token WHILE
 
-%token EQ
-%token NE
-%token GE
-%token LE
-%token GT
-%token LT
-%token ADD
-%token SUB
-%token MUL
-%token DIV
-%token MOD
-%token OR
-%token AND
-%token BITOR
-%token BITAND
-%token BITXOR
-%token NOT
-%token COM
-%token LSH
-%token RSH
-%token SET
-%token SETADD
-%token SETSUB
-%token SETMUL
-%token SETDIV
-%token SETMOD
-%token SETOR
-%token SETAND
-%token SETXOR
-%token SETLSH
-%token SETRSH
-
 %token UNSIGNED
 %token TYPEDEF
 %token STRUCT
@@ -122,7 +90,7 @@ type : VOID
 
 /*This rule matches a declaration such as int c;*/
 declaration : type ID ';'
-			| type MUL ID ';'
+			| type '*' ID ';'
 			| type ID '[' ']' ';'
 			;
 
@@ -146,9 +114,9 @@ paramater : INTVAL
 		  | expr op expr
 		  | ID
 		  | type ID
-		  | type MUL ID
+		  | type '*' ID
 		  | type ID '[' ']'
-		  | type MUL ID '[' ']'
+		  | type '*' ID '[' ']'
 		  ;
 
 /*********************************************************
@@ -168,37 +136,37 @@ expr : INTVAL
 	 ;
 
 /*This rule matches any */
-op : EQ
-   | NE
-   | GE
-   | LE
-   | GT
-   | LT
-   | ADD
-   | SUB
-   | MUL
-   | DIV
-   | MOD
-   | OR
-   | AND
-   | BITOR
-   | BITAND
-   | BITXOR
-   | NOT
-   | COM
-   | LSH
-   | RSH
-   | SET
-   | SETADD
-   | SETSUB
-   | SETMUL
-   | SETDIV
-   | SETMOD
-   | SETOR
-   | SETAND
-   | SETXOR
-   | SETLSH
-   | SETRSH
+op : '=='
+   | '!='
+   | '>='
+   | '<='
+   | '>'
+   | '<'
+   | '+'
+   | '-'
+   | '*'
+   | '/'
+   | '%'
+   | '||'
+   | '&&'
+   | '|'
+   | '&'
+   | '^'
+   | '!'
+   | '~'
+   | '<<'
+   | '>>'
+   | '='
+   | '+='
+   | '-='
+   | '*='
+   | '/='
+   | '%='
+   | '|='
+   | '&='
+   | '^='
+   | '<<='
+   | '>>='
    ;
 
 /*This rule matches a function call such as funce( int x ) */
@@ -238,7 +206,7 @@ while : WHILE '(' expr ')' statement
 	  ;
 
 /*This rule matches a assignment such as y = funce( 4 );*/
-assignment : ID SET expr ';'
+assignment : ID '=' expr ';'
 		   ;
 
 %%
