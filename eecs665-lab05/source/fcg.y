@@ -34,6 +34,38 @@ extern int yylex();
 %token ELSE
 %token WHILE
 
+%token EQ
+%token NE
+%token GE
+%token LE
+%token GT
+%token LT
+%token ADD
+%token SUB
+%token MUL
+%token DIV
+%token MOD
+%token OR
+%token AND
+%token BITOR
+%token BITAND
+%token BITXOR
+%token NOT
+%token COM
+%token LSH
+%token RSH
+%token SET
+%token SETADD
+%token SETSUB
+%token SETMUL
+%token SETDIV
+%token SETMOD
+%token SETOR
+%token SETAND
+%token SETXOR
+%token SETLSH
+%token SETRSH
+
 %token UNSIGNED
 %token TYPEDEF
 %token STRUCT
@@ -74,25 +106,24 @@ func_signature : type ID '(' args ')' { printf("%s", $2); printf(";\n"); lastFun
 			   ;
 
 /*This rule matches a function body such as funcd();return funca( b, b );*/
-func_body : declaration {printf("declaration inside func_body\n");}
-		  | statement {printf("statement inside func_body\n");}
+func_body : declaration
+		  | statement
 		  ;
 
 /*This rule matches a type such as int, void, etc...*/
-type : VOID {printf("VOID inside type\n");}
-	 | CHAR {printf("CHAR inside type\n");}
-	 | SHORT {printf("SHORT inside type\n");}
-	 | INT {printf("INT inside type\n");}
-	 | LONG {printf("LONG inside type\n");}
-	 | FLOAT {printf("FLOAT inside type\n");}
-	 | DOUBLE {printf("DOUBLE inside type\n");}
+type : VOID
+	 | CHAR
+	 | SHORT
+	 | INT
+	 | LONG
+	 | FLOAT
+	 | DOUBLE
 	 ;
 
 /*This rule matches a declaration such as int c;*/
-declaration : type ID ';' {printf("type ID inside declaration\n");}
-			| type '*' ID ';' {printf("type * ID inside declaration\n");}
-			| type ID '[' ']' ';' {printf("type ID [] inside declaration\n");}
-			| type '*' ID '[' ']' ';' {printf("type * ID [] inside declaration\n");}
+declaration : type ID ';'
+			| type MUL ID ';'
+			| type ID '[' ']' ';'
 			;
 
 /*********************************************************
@@ -101,23 +132,23 @@ declaration : type ID ';' {printf("type ID inside declaration\n");}
  * can either be nothing, one parameter, or multiple
  * parameters separated by commas.
  ********************************************************/
-args : /* empty rule */ {printf("empty rule inside args\n");}
-     | paramater {printf("paramater inside args\n");}
-     | paramater ',' args {printf("paramater, args inside args\n");}
+args : /* empty rule */
+     | paramater
+     | paramater ',' args
      ;
 
 /*This rule matches any parameter such as int x*/
-paramater : INTVAL {printf("INTVAL inside parameter\n");}
-		  | STRVAL {printf("STRVAL inside parameter\n");}
-		  | CHARVAL {printf("CHARVAL inside parameter\n");}
-		  | DBLVAL {printf("DBLVAL inside parameter\n");}
-		  | FLTVAL {printf("FLTVAL inside parameter\n");}
-		  | expr op expr {printf("expr op expr inside parameter\n");}
-		  | ID {printf("ID inside parameter\n");}
-		  | type ID {printf("type ID inside parameter\n");}
-		  | type '*' ID {printf("type * ID inside parameter\n");}
-		  | type ID '[' ']' {printf("type ID [] inside parameter\n");}
-		  | type '*' ID '[' ']' {printf("type * ID [] inside parameter\n");}
+paramater : INTVAL
+		  | STRVAL
+		  | CHARVAL
+		  | DBLVAL
+		  | FLTVAL
+		  | expr op expr
+		  | ID
+		  | type ID
+		  | type MUL ID
+		  | type ID '[' ']'
+		  | type MUL ID '[' ']'
 		  ;
 
 /*********************************************************
@@ -126,48 +157,48 @@ paramater : INTVAL {printf("INTVAL inside parameter\n");}
  * but you should modify the rule to parse the required
  * expressions.
  ********************************************************/
-expr : INTVAL {printf("INTVAL inside expr\n");}
-	 | STRVAL {printf("STRVAL inside expr\n");}
-	 | CHARVAL {printf("CHARVAL inside expr\n");}
-	 | DBLVAL {printf("DBLVAL inside expr\n");}
-	 | FLTVAL {printf("FLTVAL inside expr\n");}
-	 | expr op expr {printf("expr op expr inside expr\n");}
-	 | function_call {printf("function_call inside expr\n");}
-	 | ID {printf("ID inside expr\n");}
+expr : INTVAL
+	 | STRVAL
+	 | CHARVAL
+	 | DBLVAL
+	 | FLTVAL
+	 | expr op expr
+	 | function_call
+	 | ID
 	 ;
 
 /*This rule matches any */
-op : '=='
-   | '!='
-   | '>='
-   | '<='
-   | '>'
-   | '<'
-   | '+'
-   | '-'
-   | '*'
-   | '/'
-   | '%'
-   | '||'
-   | '&&'
-   | '|'
-   | '&'
-   | '^'
-   | '!'
-   | '~'
-   | '<<'
-   | '>>'
-   | '='
-   | '+='
-   | '-='
-   | '*='
-   | '/='
-   | '%='
-   | '|='
-   | '&='
-   | '^='
-   | '<<='
-   | '>>='
+op : EQ
+   | NE
+   | GE
+   | LE
+   | GT
+   | LT
+   | ADD
+   | SUB
+   | MUL
+   | DIV
+   | MOD
+   | OR
+   | AND
+   | BITOR
+   | BITAND
+   | BITXOR
+   | NOT
+   | COM
+   | LSH
+   | RSH
+   | SET
+   | SETADD
+   | SETSUB
+   | SETMUL
+   | SETDIV
+   | SETMOD
+   | SETOR
+   | SETAND
+   | SETXOR
+   | SETLSH
+   | SETRSH
    ;
 
 /*This rule matches a function call such as funce( int x ) */
@@ -175,22 +206,22 @@ function_call : ID '(' args ')' {printf(lastFunction); printf(" -> "); printf("%
 			  ;
 
 /*This rule matches a statement such as y = funce( 4 );*/
-statement : assignment {printf("assignment inside statement\n");}
-		  | return_statement {printf("return_statement inside statement\n");}
-		  | statement_block {printf("statement_block inside statement\n");}
-		  | function_call  {printf("in function_call inside statement \n");}
-		  | if_statement {printf("if_statement inside statement\n");}
-		  | while {printf("while inside statement\n");}
+statement : assignment ';'
+		  | return_statement ';'
+		  | statement_block
+		  | function_call ';'
+		  | if_statement
+		  | while
 		  ;
 
 /*This rule matches a statement block such as { statement statement ... }*/
-statement_block : '{' statements '}' {printf("{statements} inside statement_block\n");}
+statement_block : '{' statements '}'
 				;
 
 /*This rule matches a group of statements such as statement statement ... */
-statements : /* empty rule */ {printf("empty rule inside statements\n");}
-		   | statement {printf("statement inside statements\n");}
-		   | statement '\n' statements {printf("statement '\\n' statement inside statements\n");}
+statements : /* empty rule */
+		   | statement
+		   | statement '\n' statements
 		   ;
 
 /*This rule matches a return such as return x;*/
@@ -198,8 +229,8 @@ return_statement : RETURN expr ';'
 				 ;
 
 /*This rule matches an if such as if (x == 1) {...}*/
-if_statement : IF '(' expr ')' statement ELSE statement
-   | IF '(' expr ')' statement
+if_statement : IF '(' expr ')' statement_block ELSE statement_block
+   | IF '(' expr ')' statement_block
    ;
 
 /*This rule matches a while such as while(1) ... */
@@ -207,7 +238,7 @@ while : WHILE '(' expr ')' statement_block
 	  ;
 
 /*This rule matches a assignment such as y = funce( 4 );*/
-assignment : ID '=' expr ';'
+assignment : ID SET expr ';'
 		   ;
 
 %%
