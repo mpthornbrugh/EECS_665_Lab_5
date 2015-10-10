@@ -217,7 +217,7 @@ statement_block : '{' statements '}'
 /*This rule matches a group of statements such as statement statement ... */
 statements : /* empty rule */
 		   | statement
-		   | statement '\n' statements
+		   | statement statements
 		   ;
 
 /*This rule matches a return such as return x;*/
@@ -225,16 +225,16 @@ return_statement : RETURN expr ';'
 				 ;
 
 /*This rule matches an if such as if (x == 1) {...}*/
-if_statement : IF '(' expr ')' statement_block ELSE statement_block
-   | IF '(' expr ')' statement_block
+if_statement : IF '(' expr ')' statement ELSE statement
+   | IF '(' expr ')' statement
    ;
 
 /*This rule matches a while such as while(1) ... */
-while : WHILE '(' expr ')' statement_block
+while : WHILE '(' expr ')' statement
 	  ;
 
 /*This rule matches a assignment such as y = funce( 4 );*/
-assignment : ID '=' expr ';'
+assignment : ID SET expr ';'
 		   ;
 
 %%
