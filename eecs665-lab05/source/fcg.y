@@ -206,8 +206,8 @@ function_call : ID '(' args ')' {printf(lastFunction); printf(" -> "); printf("%
 /*This rule matches a statement such as y = funce( 4 );*/
 statement : assignment
 		  | return_statement
-		  | statement_block
-		  | function_call  {printf("in function_call inside statement \n")}
+		  | statement_block;
+		  | function_call  {printf("in function_call inside statement \n");}
 		  | if_statement
 		  | while
 		  ;
@@ -227,12 +227,12 @@ return_statement : RETURN expr ';'
 				 ;
 
 /*This rule matches an if such as if (x == 1) {...}*/
-if_statement : IF '(' expr ')' statement ELSE statement
-   | IF '(' expr ')' statement
+if_statement : IF '(' expr ')' statement_block ELSE statement_block
+   | IF '(' expr ')' statement_block
    ;
 
 /*This rule matches a while such as while(1) ... */
-while : WHILE '(' expr ')' statement
+while : WHILE '(' expr ')' statement_block
 	  ;
 
 /*This rule matches a assignment such as y = funce( 4 );*/
