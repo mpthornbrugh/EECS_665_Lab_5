@@ -1,5 +1,5 @@
 int funca( int a, int b ) {
-    funce( 10 );
+    b = funce( 10 );
     return a * b;
 }
 
