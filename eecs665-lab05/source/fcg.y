@@ -142,12 +142,7 @@ args : /* empty rule */
      ;
 
 /*This rule matches any parameter such as int x*/
-paramater : INTVAL
-		  | STRVAL
-		  | CHARVAL
-		  | DBLVAL
-		  | FLTVAL
-		  | expr op expr
+paramater : expr
 		  | ID
 		  | type ID
 		  ;
