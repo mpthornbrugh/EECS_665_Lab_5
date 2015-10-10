@@ -203,7 +203,7 @@ if_statement : IF '(' expr ')' statement ELSE statement
    ;
 
 /*This rule matches a while such as while(1) ... */
-while : WHILE '(' expr ')' statement
+while : WHILE '(' expr ')' statement_block
 	  ;
 
 /*This rule matches a assignment such as y = funce( 4 );*/
