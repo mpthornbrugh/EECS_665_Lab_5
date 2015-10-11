@@ -107,8 +107,6 @@ func_signature : type ID '(' args ')' { printf("%s", $2); printf(";\n"); lastFun
 
 /*This rule matches a function body such as funcd();return funca( b, b );*/
 func_body : /* empty rule */
-		  | declaration
-		  | statement
 		  | declaration func_body
 		  | statement func_body
 		  ;
@@ -221,7 +219,7 @@ statements : /* empty rule */
 		   ;
 
 /*This rule matches a return such as return x;*/
-return_statement : RETURN expr ';'
+return_statement : RETURN expr
 				 ;
 
 /*This rule matches an if such as if (x == 1) {...}*/
@@ -234,7 +232,7 @@ while : WHILE '(' expr ')' statement
 	  ;
 
 /*This rule matches a assignment such as y = funce( 4 );*/
-assignment : ID SET expr ';'
+assignment : ID SET expr
 		   ;
 
 %%

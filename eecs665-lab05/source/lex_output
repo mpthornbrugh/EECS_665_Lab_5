@@ -1,0 +1,200 @@
+INT
+ID funca
+(
+INT
+ID a
+,
+INT
+ID b
+)
+{
+ID b
+SET
+ID funce
+(
+INTVAL
+)
+;
+RETURN
+ID a
+MUL
+ID b
+;
+}
+
+INT
+ID funcb
+(
+INT
+ID b
+)
+{
+ID funcd
+(
+)
+;
+RETURN
+ID funca
+(
+ID b
+,
+ID b
+)
+;
+}
+
+INT
+ID funcc
+(
+INT
+ID a
+,
+INT ID b
+)
+{
+INT
+ID c
+;
+INT
+ID d
+;
+WHILE
+(
+ID funca
+(
+INTVAL
+,
+INTVAL
+)
+)
+{
+ID a
+SET
+ID a
+ADD
+ID c
+MUL
+ID d
+SUB
+ID b
+;
+}
+}
+
+INT
+ID funcd
+(
+)
+{
+INT
+ID x
+;
+INT
+ID y
+;
+ID y
+SET
+ID funce
+(
+INTVAL
+)
+;
+ID x
+SET
+ID y
+LSH
+INTVAL
+;
+IF
+(
+ID funcd
+(
+)
+LT
+INTVAL
+)
+{
+RETURN
+INTVAL
+;
+}
+RETURN
+INTVAL
+;
+}
+
+INT
+ID funce
+(
+INT
+ID x
+)
+{
+RETURN
+ID x
+;
+}
+
+INT
+ID main
+(
+INT
+ID argc
+,
+CHAR
+MUL
+ID argv
+[
+]
+)
+{
+INT
+ID a
+;
+INT
+ID b
+;
+ID a
+SET
+ID funca
+(
+INTVAL
+,
+INTVAL
+)
+;
+ID b
+SET
+ID funcb
+(
+5
+)
+;
+IF
+(
+ID argc
+LE
+INTVAL
+)
+{
+ID funcc
+(
+INTVAL
+,
+INTVAL
+)
+;
+}
+ELSE
+{
+ID funcd
+(
+)
+;
+}
+RETURN
+ID a
+ADD
+ID b
+;
+}
