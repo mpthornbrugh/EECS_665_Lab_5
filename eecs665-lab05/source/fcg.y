@@ -143,6 +143,9 @@ args : /* empty rule */
 paramater : expr
 		  | ID
 		  | type ID
+		  | type MUL ID
+		  | type ID '[' ']'
+		  | type MUL ID '[' ']'
 		  ;
 
 /*********************************************************
