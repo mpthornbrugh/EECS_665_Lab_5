@@ -107,7 +107,7 @@ func_signature : type ID '(' args ')' { printf("%s", $2); printf(";\n"); lastFun
 
 /*This rule matches a function body such as funcd();return funca( b, b );*/
 func_body : /* empty rule */
-		  | declaration func_body
+		  | declaration ';' func_body
 		  | statement func_body
 		  ;
 
@@ -122,10 +122,10 @@ type : VOID
 	 ;
 
 /*This rule matches a declaration such as int c;*/
-declaration : type ID ';'
-			| type MUL ID ';'
-			| type ID '[' ']' ';'
-			| type MUL ID '[' ']' ';'
+declaration : type ID
+			| type MUL ID
+			| type ID '[' ']'
+			| type MUL ID '[' ']'
 			;
 
 /*********************************************************
@@ -141,10 +141,7 @@ args : /* empty rule */
 
 /*This rule matches any parameter such as int x*/
 paramater : expr
-		  | type ID
-		  | type MUL ID
-		  | type ID '[' ']'
-		  | type MUL ID '[' ']'
+		  | declaration
 		  ;
 
 /*********************************************************
