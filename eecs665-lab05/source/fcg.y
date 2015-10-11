@@ -141,7 +141,6 @@ args : /* empty rule */
 
 /*This rule matches any parameter such as int x*/
 paramater : expr
-		  | ID
 		  | type ID
 		  | type MUL ID
 		  | type ID '[' ']'
