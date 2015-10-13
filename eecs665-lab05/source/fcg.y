@@ -85,6 +85,9 @@ extern int yylex();
 %token BREAK
 %token GOTO
 
+%nonassoc IF
+%nonassoc ELSE
+
 %start top
 
 %%
@@ -223,7 +226,7 @@ return_statement : RETURN expr
 
 /*This rule matches an if such as if (x == 1) {...}*/
 if_statement : IF '(' expr ')' statement ELSE statement
-   | IF '(' expr ')' statement
+   | IF '(' expr ')' statement  %prec IF
    ;
 
 /*This rule matches a while such as while(1) ... */
