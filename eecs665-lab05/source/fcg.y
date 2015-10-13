@@ -88,6 +88,38 @@ extern int yylex();
 %nonassoc IF
 %nonassoc ELSE
 
+%nonassoc NOT
+%nonassoc COM
+%nonassoc MUL
+%nonassoc DIV
+%nonassoc MOD
+%nonassoc ADD
+%nonassoc SUB
+%nonassoc LSH
+%nonassoc RSH
+%nonassoc LT
+%nonassoc LE
+%nonassoc GT
+%nonassoc GE
+%nonassoc EQ
+%nonassoc NE
+%nonassoc BITAND
+%nonassoc BITXOR
+%nonassoc BITOR
+%nonassoc AND
+%nonassoc OR
+%nonassoc SET
+%nonassoc SETADD
+%nonassoc SETSUB
+%nonassoc SETMUL
+%nonassoc SETDIV
+%nonassoc SETMOD
+%nonassoc SETLSH
+%nonassoc SETRSH
+%nonassoc SETAND
+%nonassoc SETXOR
+%nonassoc SETOR
+
 %start top
 
 %%
@@ -164,37 +196,37 @@ expr : INTVAL
 	 ;
 
 /*This rule matches any */
-op : EQ
-   | NE
-   | GE
-   | LE
-   | GT
-   | LT
-   | ADD
-   | SUB
-   | MUL
-   | DIV
-   | MOD
-   | OR
-   | AND
-   | BITOR
-   | BITAND
-   | BITXOR
-   | NOT
-   | COM
-   | LSH
-   | RSH
-   | SET
-   | SETADD
-   | SETSUB
-   | SETMUL
-   | SETDIV
-   | SETMOD
-   | SETOR
-   | SETAND
-   | SETXOR
-   | SETLSH
-   | SETRSH
+op : EQ     %prec EQ
+   | NE     %prec NE
+   | GE     %prec GE
+   | LE     %prec LE
+   | GT     %prec GT
+   | LT     %prec LT
+   | ADD    %prec ADD
+   | SUB    %prec SUB
+   | MUL    %prec MUL
+   | DIV    %prec DIV
+   | MOD    %prec MOD
+   | OR     %prec OR
+   | AND    %prec AND
+   | BITOR  %prec BITOR
+   | BITAND %prec BITAND
+   | BITXOR %prec BITXOR
+   | NOT    %prec NOT
+   | COM    %prec COM
+   | LSH    %prec LSH
+   | RSH    %prec RSH
+   | SET    %prec SET
+   | SETADD %prec SETADD
+   | SETSUB %prec SETSUB
+   | SETMUL %prec SETMUL
+   | SETDIV %prec SETDIV
+   | SETMOD %prec SETMOD
+   | SETOR  %prec SETOR
+   | SETAND %prec SETAND
+   | SETXOR %prec SETXOR
+   | SETLSH %prec SETLSH
+   | SETRSH %prec SETRSH
    ;
 
 /*This rule matches a function call such as funce( int x ) */
